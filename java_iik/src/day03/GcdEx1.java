@@ -16,8 +16,9 @@ public class GcdEx1 {
 				
 				if(number%j!=0)
 					continue;
-					System.out.println(j);
+				System.out.println(j);
 			}
+			
 			
 	}
 
