@@ -14,11 +14,17 @@ public class HomeworkEx1 {
 		 * 0보다 작거나 100보다 큰 경우 : 잘못된 점수
 		 *
 		 */
-		Scanner sc=new Scanner(System.in);
 		
+
+		
+		
+		Scanner sc=new Scanner(System.in);
+	
+		//성적 입력
 		System.out.print("성적을 입력하세요.");
 		int score=sc.nextInt();
 		
+		//성적에 따른 학점 부여
 		if(score<0 || score>100)
 			System.out.println("잘못된 점수");
 		else if(score>=90)
@@ -31,13 +37,10 @@ public class HomeworkEx1 {
 					System.out.println("D");
 				else if(score<60)
 					System.out.println("F");
-						
-		
 		
 		
 		
 		sc.close();
-
 	}
 
 }
