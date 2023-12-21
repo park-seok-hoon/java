@@ -5,6 +5,7 @@ package day09.board;
  * */
 public class Board {
 	//정보 : 게시일(일자), 제목, 내용, 작성자, 조회수, 번호 
+	private static int count = 0;
 	private int num, views;
 	private String title, contents, writer, date;
 	
@@ -83,8 +84,8 @@ public class Board {
 		contents = contents1;
 	}
 	//생성자 : 게시글 번호, 제목, 내용, 작성자, 게시일이 주어진 생성자
-	public Board(int num, String title, String contents, String writer, String date) {
-		this.num = num;
+	public Board(String title, String contents, String writer, String date) {
+		this.num = ++count;
 		this.title = title;
 		this.contents = contents;
 		this.writer = writer;
