@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css 적용 우선순위</title>
+    <style>
+        /*
+        
+        css 적용 우선순위
+        태그 > 클래스 > id > 인라인 > !important
+        태그 : 1점
+        클래스 : 10점
+        id : 100점
+        점수가 높은 선택자가 우선적으로 적용됨
+        *
+           /
+        a{ color : blue}
+        .link-menu{color : green;}
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="" class="link-menu" id="menu1">메뉴1</a>
+        </li>
+    </ul>
+</body>
+</html>
