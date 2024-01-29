@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+			.box{border: 1px solid black; height: 300px; background-color: blue;}
+			.boxappear{border: 1px solid black; height: 300px; background-color: white;}
+
+	</style>
+</head>
+<body>
+	<button class="btn">더보기</button>
+	<div class="box">내용</div>
+	<script>
+		let boxappear=document.getElementsByClassName("boxappear")[0];
+		let btn = document.getElementsByClassName("btn")[0];
+		let box = document.getElementsByClassName("box")[0];
+
+		
+		btn.onclick = function(){
+			let text=this.innerText;
+
+			if(text=="더보기"){
+				this.innerText="접기";
+				box.classList.toggle("boxappear");
+			}else
+			{
+				this.innerText="더보기"
+				box.classList.toggle("box");
+			}
+		}
+
+		/*접기 버튼과 박스를 만든 후, 버튼을 클릭하면 박스가 사라지고
+			접기 글자가 더보기로 변경되도록 구현
+		*/
+
+	</script>
+</body>
+</html>

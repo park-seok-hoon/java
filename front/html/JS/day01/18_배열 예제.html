@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        정수를 입력받아 입력받은 정수만큼 오늘의
+        할일을 입력해서 화면에 출력하는 예제
+        - 배열 이용
+        - ol 태그 이용하여 오늘의 할일을 출력 브라우저 화면에 출력
+        */
+        var num1 =prompt('정수1을 입력하세요.',0);
+        num1=+num1;
+        document.write('<o1>');
+        document.write('<h1>오늘의 할일은</h1>');
+        var arr = [];
+        for(let i=0; i<num1; i++)
+        {
+            var adding =prompt('할일 입력.',0);
+            arr.push(adding);
+            document.write(`<li>${arr[i]}</li>`);
+        }
+        document.write('</o1>');
+        
+        
+    </script>
+</body>
+</html>

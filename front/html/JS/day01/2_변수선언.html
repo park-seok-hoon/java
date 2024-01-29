@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    변수 선언 방법 (여러 자료형을 사용 가능 값만 입력 해주면)
+    1. var : 중복 선언 가능, 호이스팅이 일어남
+    2. let : 중복 선언이 불가능, 호이스팅이 안 일어남
+    3. const(상수)
+    - 변수 선언 후 변수에 다양한 자료형 값들을 저장
+    */
+    var num;
+    console.log(num); //undefined가 출력, 초기화 되지 않음
+    num=1;
+    console.log(num); //정수1 출력
+    num="abc";
+    console.log(num); //문자열 abc 출력
+    let str;
+    console.log(str);
+    str=1;
+    console.log(str);
+    str="안녕";
+    console.log(str);
+    const PI=3.14 ; //const는 상수이고 값을 지정 안해주면 에러가 뜸,그리고 선언과 동시에 초기화 해줘야 됨
+    //PI=3.142342; //-> 에러가 발생, 상수는 재할당(수정)이 불가능
+    var num=3;
+    console.log(num);
+    //let str= '1'; //에러 발생, 중복 선언 불가한데 중복 선언
+    </script>
+</body>
+</html>

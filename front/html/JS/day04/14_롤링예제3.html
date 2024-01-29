@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div class="container">
+	<div class="content-box">
+	<div class="box box1"></div>
+	<div class="box box2"></div>
+</div>
+</div>
+<script>
+	let intervalTime=1500;//애니메이션 시간보다 커야 함
+
+	let firstBox;
+
+	setInterval(function(){
+		firstBox = document.querySelector(".box:first-of-type");
+		firstBox.classList.add("left");
+		firstBox.addEventListener("animationend",animationEnd);
+	},intervalTime);
+
+	function animationEnd(){
+		firstBox.classList.remove("left");
+		let contentBox = document.getElementsByClassName("content-box")[0];
+		contentBox.append(firstBox);
+	}
+
+</script>
+</body>
+</html>

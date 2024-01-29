@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박스 그림자</title>
+    <title>예제1</title>
     <style>
-        /*
-        box-shadow
-        - 박스에 그림자 효과를 줌
-        - 수평 수직 흐림 번짐 [inset] 순으로 적용
-        */
-        .box1{
-            width: 100px; height: 100px; border: 1px solid black;
-            box-shadow: 2px 2px 10px 10px red;
+        body{
+            text-align: center;
         }
-        .box2{
-            width: 100px; height: 100px;
-            box-shadow: 0 1px 0px 1px rgba(0,0,0,0.2);
+        .box{
+            width: 100px; height: 100px; border: 1px solid black;
+            text-align: center; line-height: 100px;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-    <div class="box1"></div>
-    <div class="box2"></div>
+    <!-- 
+    100px 크기를 정사각형 박스를 만들고 안에 숫자 1을 넣어보세요.
+    - 테두리는 1px solid black으로 설정
+    - 1이 사각형 가운데 오도록 수정
+    - 사각형이 좌우 가운데로 오도록 배치
+    -->
+    <div class="box">1</div>
 </body>
 </html>

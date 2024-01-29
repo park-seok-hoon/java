@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test1</title>
+</head>
+<body>
+    
+    <fieldset>
+        <legend>배송 정보</legend>
+        <ul>
+
+
+        <li>
+        <label for="prod">주문 상품</label>
+        <input type="type" id="prod" value="상품용 3KG" readonly>
+        </li>
+        
+        <li>
+        <label for="nam">이름</label>
+        <input type="type" id="nam" autofocus required value="고경희">
+        </li>
+
+        <li>
+        <label for="addr">배송 주소</label>
+        <input type="text" id="addr" required>
+        </li>
+
+        <li>
+        <label for="mail">이메일</label>
+        <input type="email" id="mail">
+        </li>
+
+        <li>
+        <label for="number">연락처</label>
+        <input type="type" id="number" value="하이픈 빼고 입력해주세요.(012345678)">
+        </li>
+
+        <li>
+        <label for="prod">배송 지정</label>
+        <input type="date" id="prod"> <small>(주문일로부터 최소 3일 이후)</small>
+        </li>      
+        
+            <label for="memo">메모</label>
+            <textarea  id="memo" cols="40" rows="4"></textarea>    
+    
+
+        </ul>
+    </fieldset>
+
+        <input type="submit" value="주문하기">
+        <input type="reset" value="취소하기">
+</body>
+</html>
