@@ -61,23 +61,7 @@
 		$("form").validate({
 			//유효성 검사
 			rules : {
-				/*
-				//name을 입력
-				name : {
-					옵션 : 값,
-					옵션 : 값
-				}
-				- 옵션
-				  - required : 필수항목
-					- maxlength : 최대 글자수
-					- minlength : 최소 글자수
-					- equalTo : 다른 요소 값과 같은지 확인
-					  - rules에 equalTo : 비교할 요소의 아이디값을 가져옴
-					- digits : 숫자만 있는지 체크
-					- email : 이메일 형식 체크
-					- url : url 형식인지 체크
-				*/
-				//name이 title 요소에 유효성 검사를 적용
+		
 				title : {
 					required : true, //필수 항목으로 설정
 					maxlength : 50, 
@@ -117,6 +101,23 @@
 			},
 			"정규표현식을 확인하세요."
 		);
+				/*
+				//name을 입력
+				name : {
+					옵션 : 값,
+					옵션 : 값
+				}
+				- 옵션
+				  - required : 필수항목
+					- maxlength : 최대 글자수
+					- minlength : 최소 글자수
+					- equalTo : 다른 요소 값과 같은지 확인
+					  - rules에 equalTo : 비교할 요소의 아이디값을 가져옴
+					- digits : 숫자만 있는지 체크
+					- email : 이메일 형식 체크
+					- url : url 형식인지 체크
+				*/
+				//name이 title 요소에 유효성 검사를 적용
 	</script>
 </body>
 </html>

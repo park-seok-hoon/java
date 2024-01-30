@@ -25,7 +25,8 @@
 			let box =`<div class="box">${count+1}</div>`;
 			$(".box-group").prepend(box);
 		});
-		$(".box").click(function(){
+		
+		$(document).on("click",".box",function(){
 			let num = $(this).text();
 			alert(num);
 		});
