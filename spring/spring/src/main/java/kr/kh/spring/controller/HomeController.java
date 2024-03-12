@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.kh.spring.model.dto.TestDTO;
 import kr.kh.spring.model.vo.MemberVO;
-import kr.kh.spring.model.vo.TestDTO;
 import kr.kh.spring.service.MemberService;
 
 

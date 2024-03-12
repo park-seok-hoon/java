@@ -1,4 +1,4 @@
-package kr.kh.spring.model.vo;
+package kr.kh.spring.model.dto;
 
 public class TestDTO {
 
@@ -19,16 +19,13 @@ public class TestDTO {
 	}
 	
 	public TestDTO() {}
-	
 	public TestDTO(String name, int age) {
-		this.name=name;
-		this.age=age;
+		this.name = name;
+		this.age = age;
 	}
-	
 	@Override
 	public String toString() {
 		return "TestDTO [name=" + name + ", age=" + age + "]";
 	}
-	
 	
 }
