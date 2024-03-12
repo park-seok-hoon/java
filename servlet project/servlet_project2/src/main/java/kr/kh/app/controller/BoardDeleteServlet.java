@@ -1,7 +1,6 @@
 package kr.kh.app.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.service.BoardService;
 import kr.kh.app.service.BoardServiceImp;
@@ -31,13 +29,6 @@ public class BoardDeleteServlet extends HttpServlet {
 		//회원 정보를 가져옴
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		//서비스에게 회원 정보와 게시글 번호를 주면서 삭제하라고 요청
-		
-		
-//		//fileList를 가져오면서 
-//		ArrayList<FileVO> fileList =boardService.getFileList(num);
-//		
-//		request.setAttribute("fileList", fileList);
-		
 		boolean res = boardService.deleteBoard(num, user);
 		//삭제 했으면 삭제했다고 알리고 게시글 리스트로 이동
 		if(res) {

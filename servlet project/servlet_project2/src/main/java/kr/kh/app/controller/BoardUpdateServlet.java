@@ -20,10 +20,10 @@ import kr.kh.app.service.BoardServiceImp;
 
 @WebServlet("/board/update")
 @MultipartConfig(
-		maxFileSize = 1024 * 1024 * 10, //10Mb
-		maxRequestSize = 1024 * 1024 * 10 * 3, //10Mb 최대 3개
-		fileSizeThreshold = 1024 * 1024 //1Mb : 파일 업로드 시 메모리에 저장되는 임시 파일 크기
-	)
+	maxFileSize = 1024 * 1024 * 10, //10Mb
+	maxRequestSize = 1024 * 1024 * 10 * 3, //10Mb 최대 3개
+	fileSizeThreshold = 1024 * 1024 //1Mb : 파일 업로드 시 메모리에 저장되는 임시 파일 크기
+)
 public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -42,9 +42,13 @@ public class BoardUpdateServlet extends HttpServlet {
 		BoardVO board = boardService.getBoard(num);
 		//게시판 리스트를 가져옴
 		ArrayList<CommunityVO> list = boardService.getCommunityList();
-		//게시글과 게시판 리스트를 화면에 전송
+		
+		//게시글 번호를 이용하여 첨부파일 리스트를 가져옴
 		ArrayList<FileVO> fileList = boardService.getFileList(num);
+		//가져온 첨부파일 리스트를 화면에 전송
 		request.setAttribute("fileList", fileList);
+		
+		//게시글과 게시판 리스트를 화면에 전송
 		request.setAttribute("list", list);
 		request.setAttribute("board", board);
 		request.getRequestDispatcher("/WEB-INF/views/board/update.jsp").forward(request, response);
@@ -62,6 +66,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		}
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		
 		//게시글 번호, 내용, 제목, 게시판 번호를 이용해서 게시글 객체를 생성
 		BoardVO board = new BoardVO(title, content, "", co_num);
 		board.setBo_num(num);
@@ -72,12 +77,11 @@ public class BoardUpdateServlet extends HttpServlet {
 		//삭제할 첨부파일 번호들
 		String [] nums = request.getParameterValues("fi_num");
 		
-		//추가할 첨부파일들을 가져옴 서버용
-		ArrayList<Part> partList = (ArrayList<Part>) request.getParts(); 
+		//추가할 첨부파일들을 가져옴	
+		ArrayList<Part> partList = (ArrayList<Part>) request.getParts();
 		
 		//서비스에게 회원 정보와 수정할 게시글 정보를 주면서 수정하라고 요청
-		boolean res = boardService.updateBoard(board, user,nums,partList);
-		
+		boolean res = boardService.updateBoard(board, user, nums, partList);
 		//수정했으면 게시글을 수정했습니다
 		if(res) {
 			request.setAttribute("msg", "게시글을 수정했습니다");

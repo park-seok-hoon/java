@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import javax.servlet.http.Part;
 
 import kr.kh.app.model.vo.BoardVO;
+import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.CommunityVO;
 import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
+import kr.kh.app.model.vo.RecommendVO;
 import kr.kh.app.pagination.Criteria;
 
 public interface BoardService {
@@ -30,6 +32,12 @@ public interface BoardService {
 
 	ArrayList<FileVO> getFileList(int num);
 
-	int recommend(int bo_num, int state, MemberVO user);
+	int recommend(int boNum, int state, String me_id);
+
+	RecommendVO getRecommend(int num, MemberVO user);
+
+	ArrayList<CommentVO> getCommentList(Criteria cri);
+
+	int getTotalCommentCount(Criteria cri);
 
 }

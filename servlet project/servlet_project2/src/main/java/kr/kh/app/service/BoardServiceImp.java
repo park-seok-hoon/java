@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.kh.app.dao.BoardDAO;
 import kr.kh.app.model.vo.BoardVO;
+import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.CommunityVO;
 import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
@@ -140,20 +141,18 @@ public class BoardServiceImp implements BoardService {
 		if(dbBoard == null || !dbBoard.getBo_me_id().equals(user.getMe_id())) {
 			return false;
 		}
-		
-		//삭제할 첨부파일 삭제
-		for(String numStr : nums) {
-			try {
-				int num = Integer.parseInt(numStr);
-				FileVO fileVo = boardDao.selectFile(num);
-				deleteFile(fileVo);
-			}catch(Exception e) {
-				e.printStackTrace();
+		if(nums != null) {
+			//삭제할 첨부파일 삭제
+			for(String numStr : nums) {
+				try {
+					int num = Integer.parseInt(numStr);
+					FileVO fileVo = boardDao.selectFile(num);
+					deleteFile(fileVo);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
-			
 		}
-		
-		
 		//추가할 첨부파일 추가
 		for(Part part : partList) {
 			uploadFile(part, board.getBo_num());
@@ -182,36 +181,6 @@ public class BoardServiceImp implements BoardService {
 		boardDao.insertFile(fileVo);
 	}
 
-	@Override
-	public int recommend(int bo_num, int state, MemberVO user) {
-		
-		if(user == null) {
-			throw new RuntimeException();
-		}
-		//게시글 번호와 아이디를 주면서 추천 정보를 가져오라고 시킴
-		RecommendVO recommend = boardDao.selectRecommend(user.getMe_id(),bo_num);
-		//없으면 추가
-		if(recommend == null) {
-			recommend = new RecommendVO(user.getMe_id(),bo_num,state);
-			boardDao.insertRecommend(recommend);
-			return state;
-		}
-		//있으면 수정
-		else {
-			//기존 추천 상태와 state가 같으면 취소(0으로 변경)
-			if(state == recommend.getRe_state()) {
-				recommend.setRe_state(0);
-			}
-			//다르면 state로 변경
-			else {
-				recommend.setRe_state(state);
-			}
-			boardDao.updateRecommend(recommend);
-			return recommend.getRe_state();
-		}
-	}
-	
-	
 	//문자열이 null이거나 빈 문자열이면 false, 아니면 true를 반환하는 메서드
 	public boolean checkString(String str) {
 		if(str == null || str.length() == 0) {
@@ -230,11 +199,58 @@ public class BoardServiceImp implements BoardService {
 		boardDao.deleteFile(file.getFi_num());
 	}
 
+	@Override
+	public int recommend(int boNum, int state, String me_id) {
+		switch (state) {
+		case -1, 1: break;
+		default:
+			throw new RuntimeException();
+		}
+		//회원이 게시글에 추천한 내역이 있는지 확인 => 없으면 추가, 있으면 수정
+		//회원이 게시글에 추천한 정보를 가져옴
+		RecommendVO recommend = boardDao.selectRecommend(boNum, me_id);
+		
+		//없으면 추가
+		if(recommend == null) {
+			recommend = new RecommendVO(me_id, boNum, state);
+			boardDao.insertRecommend(recommend);
+			return state;
+		}
+		//있으면 수정
+		//이전 추천 상태와 현재 추천 상태가 같다 => 취소
+		if(state == recommend.getRe_state()) {
+			recommend.setRe_state(0);
+		}
+		//변경. 추천->비추천, 비추천->추천
+		else {
+			recommend.setRe_state(state);
+		}
+		boardDao.updateRecommend(recommend);
+		return recommend.getRe_state();
+	}
 
-	
-	
-	
-	
-	
+	@Override
+	public RecommendVO getRecommend(int num, MemberVO user) {
+		if(user == null || num <= 0) {
+			return null;
+		}
+		return boardDao.selectRecommend(num, user.getMe_id());
+	}
+
+	@Override
+	public ArrayList<CommentVO> getCommentList(Criteria cri) {
+		if(cri == null) {
+			return null;
+		}
+		return boardDao.selectCommentList(cri);
+	}
+
+	@Override
+	public int getTotalCommentCount(Criteria cri) {
+		if(cri == null) {
+			return 0;
+		}
+		return boardDao.selectTotalCommentCount(cri);
+	}
 	
 }

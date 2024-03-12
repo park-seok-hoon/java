@@ -11,17 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/DownloadServlet")
+@WebServlet("/download")
 public class DownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private String uploadPath = "D:\\uploads";
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String fileName = request.getParameter("filename");
-		String filePath = uploadPath + fileName.replace('/', File.separatorChar);
-		
+       
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    	String uploadPath = "D:\\uploads";
+    	//화면에서 보낸 filename을 가져옴
+    	String fileName = request.getParameter("filename");
+    	
+    	//실제 파일을 가져와서 클라이언트에 보냄
+    	String filePath = uploadPath + fileName.replace('/', File.separatorChar);
 		File file = new File(filePath);
 		try(FileInputStream fis = new FileInputStream(file);
 			OutputStream os = response.getOutputStream()){
