@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.kh.spring.model.vo.MemberVO;
 import kr.kh.spring.model.vo.TestDTO;
 import kr.kh.spring.service.MemberService;
-import kr.kh.spring.service.MemberServiceImp;
 
 
 @Controller
@@ -21,8 +21,9 @@ public class HomeController {
 	//value : url, method :전송방식을 GET 또는 POST
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		int count = memberService.testCountMember();
-		System.out.println("등록된 회원 수 : "+ count);
+		
+		MemberVO member = memberService.getMember("admin");
+		System.out.println(member);
 		//model.addAttribute("화면에서 사용할 이름","보낼 데이터");
 		model.addAttribute("name","박석훈");
 		//home.jsp로 전송
@@ -48,3 +49,4 @@ public class HomeController {
 			
 		}
 }
+
