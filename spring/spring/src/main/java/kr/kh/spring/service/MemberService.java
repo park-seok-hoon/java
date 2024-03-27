@@ -1,11 +1,7 @@
 package kr.kh.spring.service;
 
-import java.util.ArrayList;
-
 import kr.kh.spring.model.dto.LoginDTO;
-import kr.kh.spring.model.vo.BoardVO;
 import kr.kh.spring.model.vo.MemberVO;
-import kr.kh.spring.pagination.Criteria;
 
 public interface MemberService {
 
@@ -13,5 +9,16 @@ public interface MemberService {
 
 	MemberVO login(LoginDTO loginDto);
 
+	boolean idCheck(String id);
+
+	boolean findPw(String id);
+
+	boolean pwCheck(String pw, MemberVO user);
+
+	boolean updateMember(MemberVO member, MemberVO user);
+
+	void updateMemberCookie(MemberVO user);
+
+	MemberVO getMemberByCookie(String sessionId);
 
 }
